@@ -168,7 +168,7 @@ export const portfolioData: PortfolioData = {
         en: "A comprehensive web application designed for agents and administrators. It enables management of recycling operations, tracking user performance, and real-time analysis of environmental data.",
         fr: "Ecocycle est conçue pour les agents et les administrateurs. Elle permet de gérer les opérations liées au recyclage, de suivre les performances des utilisateurs et d'analyser les données environnementales en temps réel."
       },
-      technologies: ["React", "TypeScript", "Tailwind CSS","Bibliothèques QR Code"],
+      technologies: ["React", "TypeScript", "Tailwind CSS", "react-qr-code"],
       link: "https://ecocycle-ci.vercel.app/",
       featured: true,
       github: "https://github.com/P-CIV/ecocycle",
