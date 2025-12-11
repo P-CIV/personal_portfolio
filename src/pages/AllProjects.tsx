@@ -4,6 +4,56 @@ import { portfolioData } from '../data/portfolio';
 import { ArrowLeft, Github, ExternalLink, X } from 'lucide-react';
 import { useState } from 'react';
 
+function getTechBadgeColor(tech: string): string {
+  const techColors: Record<string, string> = {
+    'React': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'React Native': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'Vue.js': 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-600/10 dark:text-emerald-400 dark:border-emerald-600/30',
+    'TypeScript': 'bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-600/10 dark:text-yellow-400 dark:border-yellow-600/30',
+    'JavaScript': 'bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-600/10 dark:text-yellow-400 dark:border-yellow-600/30',
+    'Tailwind CSS': 'bg-cyan-100 text-cyan-700 border-cyan-200 dark:bg-cyan-600/10 dark:text-cyan-400 dark:border-cyan-600/30',
+    'HTML/CSS': 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-600/10 dark:text-orange-400 dark:border-orange-600/30',
+    'HTML5': 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-600/10 dark:text-orange-400 dark:border-orange-600/30',
+    'HTML': 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-600/10 dark:text-orange-400 dark:border-orange-600/30',
+    'CSS3': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'CSS': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'Responsive Design': 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-600/10 dark:text-purple-400 dark:border-purple-600/30',
+    'UX/UI Design': 'bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-600/10 dark:text-pink-400 dark:border-pink-600/30',
+    'UX/UI': 'bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-600/10 dark:text-pink-400 dark:border-pink-600/30',
+    'Figma': 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-600/10 dark:text-purple-400 dark:border-purple-600/30',
+    'Node.js': 'bg-green-100 text-green-700 border-green-200 dark:bg-green-600/10 dark:text-green-400 dark:border-green-600/30',
+    'Express.js': 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-600/10 dark:text-gray-400 dark:border-gray-600/30',
+    'Express': 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-600/10 dark:text-gray-400 dark:border-gray-600/30',
+    'Python': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'PostgreSQL': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'MongoDB': 'bg-green-100 text-green-700 border-green-200 dark:bg-green-600/10 dark:text-green-400 dark:border-green-600/30',
+    'MySQL': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'SQL': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'REST APIs': 'bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-600/10 dark:text-indigo-400 dark:border-indigo-600/30',
+    'REST API': 'bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-600/10 dark:text-indigo-400 dark:border-indigo-600/30',
+    'GraphQL': 'bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-600/10 dark:text-pink-400 dark:border-pink-600/30',
+    'Firebase': 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-600/10 dark:text-orange-400 dark:border-orange-600/30',
+    'Git': 'bg-red-100 text-red-700 border-red-200 dark:bg-red-600/10 dark:text-red-400 dark:border-red-600/30',
+    'GitHub': 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-600/10 dark:text-gray-400 dark:border-gray-600/30',
+    'Docker': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'Linux': 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-600/10 dark:text-orange-400 dark:border-orange-600/30',
+    'AWS': 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-600/10 dark:text-orange-400 dark:border-orange-600/30',
+    'npm': 'bg-red-100 text-red-700 border-red-200 dark:bg-red-600/10 dark:text-red-400 dark:border-red-600/30',
+    'Vite': 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-600/10 dark:text-purple-400 dark:border-purple-600/30',
+    'Webpack': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'Jest': 'bg-red-100 text-red-700 border-red-200 dark:bg-red-600/10 dark:text-red-400 dark:border-red-600/30',
+    'CI/CD': 'bg-red-100 text-red-700 border-red-200 dark:bg-red-600/10 dark:text-red-400 dark:border-red-600/30',
+    'Kotlin': 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-600/10 dark:text-purple-400 dark:border-purple-600/30',
+    'Framer Motion': 'bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-600/10 dark:text-pink-400 dark:border-pink-600/30',
+    'Material Design': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'react-qr-code': 'bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-600/10 dark:text-indigo-400 dark:border-indigo-600/30',
+    'Green-tech': 'bg-green-100 text-green-700 border-green-200 dark:bg-green-600/10 dark:text-green-400 dark:border-green-600/30',
+    'SendGrid': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'Swift': 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-600/10 dark:text-orange-400 dark:border-orange-600/30',
+  };
+  return techColors[tech] || 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-600/10 dark:text-gray-400 dark:border-gray-600/30';
+}
+
 export default function AllProjects() {
   const { t } = useLanguage();
   const { projects } = portfolioData;
@@ -105,13 +155,13 @@ export default function AllProjects() {
                   {project.technologies.slice(0, 3).map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 bg-secondary text-secondary-foreground text-xs rounded-full font-medium"
+                      className={`px-3 py-1 text-xs rounded-full font-medium border ${getTechBadgeColor(tech)}`}
                     >
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 3 && (
-                    <span className="px-3 py-1 bg-secondary text-secondary-foreground text-xs rounded-full font-medium">
+                    <span className={`px-3 py-1 text-xs rounded-full font-medium border ${getTechBadgeColor('REST APIs')}`}>
                       +{project.technologies.length - 3}
                     </span>
                   )}

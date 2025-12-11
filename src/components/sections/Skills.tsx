@@ -50,6 +50,7 @@ export default function Skills() {
       'CSS3': 'bg-blue-100 text-blue-700 border-blue-200',
       'Responsive Design': 'bg-purple-100 text-purple-700 border-purple-200',
       'UX/UI Design': 'bg-pink-100 text-pink-700 border-pink-200',
+      'UX/UI': 'bg-pink-100 text-pink-700 border-pink-200',
       'Figma': 'bg-purple-100 text-purple-700 border-purple-200',
       'Node.js': 'bg-green-100 text-green-700 border-green-200',
       'Express.js': 'bg-gray-100 text-gray-700 border-gray-200',
@@ -75,11 +76,18 @@ export default function Skills() {
       'Problem Solving': 'bg-indigo-100 text-indigo-700 border-indigo-200',
       'Team Collaboration': 'bg-teal-100 text-teal-700 border-teal-200',
       'Agile/Scrum': 'bg-blue-100 text-blue-700 border-blue-200',
+      'HTML': 'bg-orange-100 text-orange-700 border-orange-200',
+      'CSS': 'bg-blue-100 text-blue-700 border-blue-200',
+      'Express': 'bg-gray-100 text-gray-700 border-gray-200',
+      'REST API': 'bg-indigo-100 text-indigo-700 border-indigo-200',
+      'SendGrid': 'bg-blue-100 text-blue-700 border-blue-200',
+      'Swift': 'bg-orange-100 text-orange-700 border-orange-200',
       'Code Review': 'bg-purple-100 text-purple-700 border-purple-200',
       'Testing': 'bg-green-100 text-green-700 border-green-200',
       'Documentation': 'bg-yellow-100 text-yellow-700 border-yellow-200',
       'Material Design': 'bg-blue-100 text-blue-700 border-blue-200',
       'react-qr-code': 'bg-indigo-100 text-indigo-700 border-indigo-200',
+      'Green-tech': 'bg-green-100 text-green-700 border-green-200',
     };
     return techColors[tech] || 'bg-gray-100 text-gray-700 border-gray-200';
   };
