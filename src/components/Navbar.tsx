@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from '../contexts/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';
 import { Button } from './ui/button';
 

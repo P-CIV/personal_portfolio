@@ -39,7 +39,7 @@ export default function Contact() {
     {
       icon: Github,
       label: { en: 'GitHub', fr: 'GitHub' },
-      value: 'PascalKambou',
+      value: 'P-CIV',
       href: personal.social.github || '#',
       color: 'text-purple-600',
       bg: 'bg-purple-500/10',
@@ -47,7 +47,7 @@ export default function Contact() {
     {
       icon: Linkedin,
       label: { en: 'LinkedIn', fr: 'LinkedIn' },
-      value: 'P-CIV',
+      value: 'Pascal Kambou',
       href: personal.social.linkedin || '#',
       color: 'text-cyan-600',
       bg: 'bg-cyan-500/10',

@@ -11,18 +11,44 @@ interface ProjectCardProps {
   variants: Variants;
 }
 
-function getTechBadgeColor(techName: string): string {
-  const name = techName.toLowerCase();
-
-  if (name.includes('react') || name.includes('next.js')) return 'bg-blue-600/10 text-blue-400 border-blue-600/30';
-  if (name.includes('tailwind') || name.includes('css')) return 'bg-cyan-600/10 text-cyan-400 border-cyan-600/30';
-  if (name.includes('node') || name.includes('express')) return 'bg-green-600/10 text-green-400 border-green-600/30';
-  if (name.includes('typescript') || name.includes('javascript')) return 'bg-yellow-600/10 text-yellow-400 border-yellow-600/30';
-  if (name.includes('mongodb') || name.includes('sql')) return 'bg-lime-600/10 text-lime-400 border-lime-600/30';
-  if (name.includes('framer') || name.includes('motion')) return 'bg-pink-600/10 text-pink-400 border-pink-600/30';
-  if (name.includes('redux') || name.includes('zustand')) return 'bg-purple-600/10 text-purple-400 border-purple-600/30';
-
-  return 'bg-secondary text-secondary-foreground border-secondary';
+function getTechBadgeColor(tech: string): string {
+  const techColors: Record<string, string> = {
+    'React': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'React Native': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'Vue.js': 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-600/10 dark:text-emerald-400 dark:border-emerald-600/30',
+    'TypeScript': 'bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-600/10 dark:text-yellow-400 dark:border-yellow-600/30',
+    'JavaScript': 'bg-yellow-100 text-yellow-700 border-yellow-200 dark:bg-yellow-600/10 dark:text-yellow-400 dark:border-yellow-600/30',
+    'Tailwind CSS': 'bg-cyan-100 text-cyan-700 border-cyan-200 dark:bg-cyan-600/10 dark:text-cyan-400 dark:border-cyan-600/30',
+    'HTML/CSS': 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-600/10 dark:text-orange-400 dark:border-orange-600/30',
+    'HTML5': 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-600/10 dark:text-orange-400 dark:border-orange-600/30',
+    'CSS3': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'Responsive Design': 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-600/10 dark:text-purple-400 dark:border-purple-600/30',
+    'UX/UI Design': 'bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-600/10 dark:text-pink-400 dark:border-pink-600/30',
+    'Figma': 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-600/10 dark:text-purple-400 dark:border-purple-600/30',
+    'Node.js': 'bg-green-100 text-green-700 border-green-200 dark:bg-green-600/10 dark:text-green-400 dark:border-green-600/30',
+    'Express.js': 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-600/10 dark:text-gray-400 dark:border-gray-600/30',
+    'Python': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'PostgreSQL': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'MongoDB': 'bg-green-100 text-green-700 border-green-200 dark:bg-green-600/10 dark:text-green-400 dark:border-green-600/30',
+    'MySQL': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'SQL': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'REST APIs': 'bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-600/10 dark:text-indigo-400 dark:border-indigo-600/30',
+    'GraphQL': 'bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-600/10 dark:text-pink-400 dark:border-pink-600/30',
+    'Firebase': 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-600/10 dark:text-orange-400 dark:border-orange-600/30',
+    'Git': 'bg-red-100 text-red-700 border-red-200 dark:bg-red-600/10 dark:text-red-400 dark:border-red-600/30',
+    'GitHub': 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-600/10 dark:text-gray-400 dark:border-gray-600/30',
+    'Docker': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'Linux': 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-600/10 dark:text-orange-400 dark:border-orange-600/30',
+    'AWS': 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-600/10 dark:text-orange-400 dark:border-orange-600/30',
+    'npm': 'bg-red-100 text-red-700 border-red-200 dark:bg-red-600/10 dark:text-red-400 dark:border-red-600/30',
+    'Vite': 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-600/10 dark:text-purple-400 dark:border-purple-600/30',
+    'Webpack': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
+    'Jest': 'bg-red-100 text-red-700 border-red-200 dark:bg-red-600/10 dark:text-red-400 dark:border-red-600/30',
+    'CI/CD': 'bg-red-100 text-red-700 border-red-200 dark:bg-red-600/10 dark:text-red-400 dark:border-red-600/30',
+    'Kotlin': 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-600/10 dark:text-purple-400 dark:border-purple-600/30',
+    'Framer Motion': 'bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-600/10 dark:text-pink-400 dark:border-pink-600/30',
+  };
+  return techColors[tech] || 'bg-gray-100 text-gray-700 border-gray-200 dark:bg-gray-600/10 dark:text-gray-400 dark:border-gray-600/30';
 }
 
 function ProjectCard({ project, index, variants }: ProjectCardProps) {
@@ -171,8 +197,8 @@ export default function Projects() {
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl">
               {t({
-                en: 'A selection of my recent projects showcasing my skills and experience',
-                fr: 'Une sélection de mes projets récents mettant en avant mes compétences et mon expérience'
+                en: 'A selection of my recent projects showcasing my skills',
+                fr: 'Une sélection de mes projets récents mettant en avant mes compétences'
               })}
             </p>
           </motion.div>
