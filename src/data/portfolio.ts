@@ -305,6 +305,7 @@ export const portfolioData: PortfolioData = {
       },
       skills: ["Informatique fondamentale","Cloud", "Apprentissage autonome","Résolution de problèmes", "Rigueur professionnelle"],
       image: "/certifications/cert_bootcamp.jpg"
+     },
     {
       id: 2,
       title: "GENIE Program Completion Certificate",
