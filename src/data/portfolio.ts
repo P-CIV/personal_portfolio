@@ -293,8 +293,20 @@ export const portfolioData: PortfolioData = {
   ],
 
   certifications: [
+
     {
       id: 1,
+      title: "Capacity Building Certificate – IT Foundation",
+      issuer: "Center for Excellence in Digital and Technology (CEDITECH)",
+      date: "2026",
+      description: {
+        en: "IT fundamentals boot camp, offered by CEDITECH by TransNumerik, focusing on the basics of IT, cloud environments, and the practical application of knowledge.",
+        fr: "Bootcamp en fondation informatique, proposé par CEDITECH by TransNumerik, axé sur les bases de l'informatique, les environnements cloud et l’application pratique des connaissances."
+      },
+      skills: ["Informatique fondamentale","Cloud", "Apprentissage autonome","Résolution de problèmes", "Rigueur professionnelle"],
+      image: "/certifications/cert_bootcamp.jpg"
+    {
+      id: 2,
       title: "GENIE Program Completion Certificate",
       issuer: "DigiFemmes Côte d'Ivoire, KOICA & GGI, Ministry of Digital Transition (Côte d'Ivoire)",
       date: "2025",
@@ -306,7 +318,7 @@ export const portfolioData: PortfolioData = {
       image: "/certifications/cert-GENIE.PNG"
     },
     {
-      id: 2,
+      id: 3,
       title: "Speaking and Presenting: Conversation Starters",
       issuer: "University of Michigan via Coursera",
       date: "2025",
@@ -318,7 +330,7 @@ export const portfolioData: PortfolioData = {
       image: "/certifications/cert-speaking-presenting.jpg"
     },
     {
-      id: 3,
+      id: 4,
       title: "Creativity, Innovation and Transformation",
       issuer: "The Pennsylvania State University via Coursera",
       date: "2025",
@@ -330,7 +342,7 @@ export const portfolioData: PortfolioData = {
       image: "/certifications/cert-creativity-innovation.jpg"
     },
     {
-      id: 4,
+      id: 5,
       title: "Google Slides Certification",
       issuer: "Google Cloud via Coursera",
       date: "2025",
@@ -342,10 +354,10 @@ export const portfolioData: PortfolioData = {
       image: "/certifications/cert-googleslides.jpg"
     },
     {
-      id: 5,
+      id: 6,
       title: "Google Drive Certification",
       issuer: "Google Cloud via Coursera",
-      date: "2025",
+      date: "2026",
       description: {
         en: "Completed an online course authorized by Google Cloud through Coursera, specializing in cloud storage management and collaborative document organization.",
         fr: "Cours en ligne sans crédit, autorisé par Google Cloud et proposé par l'intermédiaire de Coursera. Formation spécialisée en gestion du stockage cloud et organisation collaborative des documents."
@@ -354,7 +366,7 @@ export const portfolioData: PortfolioData = {
       image: "/certifications/cert-googledrive.jpg"
     },
     {
-      id: 6,
+      id: 7,
       title: "Essential React.js Training",
       issuer: "LinkedIn Learning",
       date: "2024",
@@ -366,7 +378,7 @@ export const portfolioData: PortfolioData = {
       image: "/certifications/Cert-react.jpg"
     },
     {
-      id: 7,
+      id: 8,
       title: "Developer Career Preparation Course",
       issuer: "LinkedIn Learning & Microsoft",
       date: "2024",
@@ -378,7 +390,7 @@ export const portfolioData: PortfolioData = {
       image: "/certifications/cert-linkedin-microsoft.jpg"
     },
     {
-      id: 8,
+      id: 9,
       title: "Programming Fundamentals Training",
       issuer: "LinkedIn Learning",
       date: "2024",
@@ -390,7 +402,7 @@ export const portfolioData: PortfolioData = {
       image: "/certifications/cert-linkedin-prog.jpg"
     },
     {
-      id: 9,
+      id: 10,
       title: "Generative AI Workshop",
       issuer: "Simplon.co & Meta",
       date: "2024",
