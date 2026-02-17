@@ -114,7 +114,7 @@ export default function Certifications() {
                   </div>
                 </div>
 
-                {/* Ligne Accent */}
+                
                 <motion.div
                   className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 to-blue-600"
                   initial={{ scaleX: 0 }}

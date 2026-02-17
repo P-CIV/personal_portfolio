@@ -4,6 +4,16 @@ import { portfolioData } from '../data/portfolio';
 import { ArrowLeft, Github, ExternalLink, X } from 'lucide-react';
 import { useState } from 'react';
 
+function isValidUrl(urlString: string | undefined): urlString is string {
+  if (!urlString) return false;
+  try {
+    const url = new URL(urlString);
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
 function getTechBadgeColor(tech: string): string {
   const techColors: Record<string, string> = {
     'React': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
@@ -126,7 +136,7 @@ export default function AllProjects() {
               {project.image && (
                 <div 
                   className="relative aspect-video overflow-hidden bg-muted cursor-pointer"
-                  onClick={() => setSelectedImage(project.image)}
+                  onClick={() => setSelectedImage(project.image ?? null)}
                 >
                   <img
                     src={project.image}
@@ -169,7 +179,7 @@ export default function AllProjects() {
 
                 {/* Liens */}
                 <div className="flex gap-3">
-                  {project.github && (
+                  {isValidUrl(project.github) && (
                     <a
                       href={project.github}
                       target="_blank"
@@ -180,7 +190,7 @@ export default function AllProjects() {
                       {t({ en: 'Code', fr: 'Code' })}
                     </a>
                   )}
-                  {project.link && (
+                  {isValidUrl(project.link) && (
                     <a
                       href={project.link}
                       target="_blank"

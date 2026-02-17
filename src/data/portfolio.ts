@@ -145,10 +145,10 @@ export const portfolioData: PortfolioData = {
         fr: "Un portfolio entièrement interactif, qui dispose d'une interface bilingue, d'animations fluides et d'un basculement de thème sombre/clair."
       },
       technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
-      link: "https://pascal-kambou.com",
+      link: "https://pascalkambou.vercel.app",
       featured: true,
       github: "https://github.com/P-CIV",
-      image: "projects/portfolio.png"
+      image: "/projects/portfolio.png"
     },
     {
       name: "Ecocycle - Prototype",

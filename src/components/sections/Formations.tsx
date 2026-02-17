@@ -104,7 +104,7 @@ export default function Formations() {
                         </div>
                       </div>
 
-                      {/* Description */}
+                      {/* La description */}
                       <p className="text-muted-foreground leading-relaxed">
                         {t(formation.description)}
                       </p>

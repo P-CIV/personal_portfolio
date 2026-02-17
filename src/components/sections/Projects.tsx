@@ -11,6 +11,16 @@ interface ProjectCardProps {
   variants: Variants;
 }
 
+function isValidUrl(urlString: string | undefined): urlString is string {
+  if (!urlString) return false;
+  try {
+    const url = new URL(urlString);
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
 function getTechBadgeColor(tech: string): string {
   const techColors: Record<string, string> = {
     'React': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-600/10 dark:text-blue-400 dark:border-blue-600/30',
@@ -94,7 +104,7 @@ function ProjectCard({ project, index, variants }: ProjectCardProps) {
         </div>
 
         <div className="p-6 md:p-8 w-full md:w-2/3 flex flex-col justify-between flex-grow">
-          {/* Header */}
+          {/* Le header */}
           <div>
             {project.featured && (
               <div className="inline-flex items-center gap-2 w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-3">
@@ -125,7 +135,7 @@ function ProjectCard({ project, index, variants }: ProjectCardProps) {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              {project.link && (
+              {isValidUrl(project.link) && (
                 <a
                   href={project.link}
                   target="_blank"
@@ -137,7 +147,7 @@ function ProjectCard({ project, index, variants }: ProjectCardProps) {
                 </a>
               )}
 
-              {project.github && (
+              {isValidUrl(project.github) && (
                 <a
                   href={project.github}
                   target="_blank"
@@ -181,7 +191,7 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-20 md:py-32 relative overflow-hidden">
-      {/* Décoration Arrière-plan */}
+      {/* La décoration pour l'Arrière-plan */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 right-10 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 left-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
@@ -213,7 +223,7 @@ export default function Projects() {
             </p>
           </motion.div>
 
-          {/* Grille Projets */}
+          {/* Grille pour les Projets */}
           <div className="space-y-8">
             {projects.slice(0, 3).map((project, index) => (
               <ProjectCard

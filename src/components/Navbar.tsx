@@ -19,7 +19,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const { toggleTheme } = useTheme();
+  const [themeDropdown, setThemeDropdown] = useState(false);
+  const { theme, toggleTheme, setAutoTheme, isAutoTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
@@ -41,6 +42,20 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('[role="button"]') && !target.closest('.relative')) {
+        setThemeDropdown(false);
+      }
+    };
+
+    if (themeDropdown) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [themeDropdown]);
 
   const scrollToSection = (id: string) => {
     setIsOpen(false);
@@ -126,11 +141,83 @@ export default function Navbar() {
               </span>
             </Button>
 
-            {/* Sélecteur Thème */}
-            <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
-              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            </Button>
+            {/* Sélecteur Thème avec Dropdown */}
+            <div className="relative">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={() => setThemeDropdown(!themeDropdown)}
+                aria-label="Theme menu"
+                className="relative"
+              >
+                <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              </Button>
+
+              {/* Dropdown Menu */}
+              <AnimatePresence>
+                {themeDropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 mt-2 w-40 bg-card border border-border rounded-lg shadow-lg overflow-hidden z-50"
+                  >
+                    {/* Mode Auto */}
+                    <button
+                      onClick={() => {
+                        setAutoTheme();
+                        setThemeDropdown(false);
+                      }}
+                      className={`w-full px-4 py-2 text-left flex items-center gap-2 transition-colors ${
+                        isAutoTheme 
+                          ? 'bg-primary/10 text-primary' 
+                          : 'hover:bg-muted text-foreground'
+                      }`}
+                    >
+                      <span className="text-sm font-medium">{t({ en: 'Auto', fr: 'Auto' })}</span>
+                    </button>
+
+                    {/* Mode Clair */}
+                    <button
+                      onClick={() => {
+                        if (isAutoTheme || theme !== 'light') {
+                          toggleTheme();
+                        }
+                        setThemeDropdown(false);
+                      }}
+                      className={`w-full px-4 py-2 text-left flex items-center gap-2 transition-colors ${
+                        !isAutoTheme && theme === 'light'
+                          ? 'bg-primary/10 text-primary'
+                          : 'hover:bg-muted text-foreground'
+                      }`}
+                    >
+                      <Sun className="h-4 w-4" />
+                      <span className="text-sm font-medium">{t({ en: 'Light', fr: 'Clair' })}</span>
+                    </button>
+
+                    {/* Mode Sombre */}
+                    <button
+                      onClick={() => {
+                        if (isAutoTheme || theme !== 'dark') {
+                          toggleTheme();
+                        }
+                        setThemeDropdown(false);
+                      }}
+                      className={`w-full px-4 py-2 text-left flex items-center gap-2 transition-colors ${
+                        !isAutoTheme && theme === 'dark'
+                          ? 'bg-primary/10 text-primary'
+                          : 'hover:bg-muted text-foreground'
+                      }`}
+                    >
+                      <Moon className="h-4 w-4" />
+                      <span className="text-sm font-medium">{t({ en: 'Dark', fr: 'Sombre' })}</span>
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             {/* Bouton Menu Mobile */}
             <Button
